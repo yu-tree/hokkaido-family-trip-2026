@@ -1,0 +1,42 @@
+.place-photo {
+  margin: 20px 0 0;
+  overflow: hidden;
+  border-radius: 13px;
+  background: #e9eeeb;
+}
+
+.place-photo img {
+  display: block;
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+}
+
+.place-photo figcaption {
+  padding: 8px 11px;
+  background: #f3f5f2;
+  color: #697771;
+  font-size: 12px;
+}
+
+.photo-credits {
+  margin-top: 24px;
+  padding: 14px 18px;
+  border: 1px solid #e2e6e1;
+  border-radius: 12px;
+  color: #687873;
+  font-size: 12px;
+}
+
+.photo-credits summary {
+  cursor: pointer;
+  color: #4e625c;
+  font-weight: 700;
+}
+
+.photo-credits p { margin: 10px 0 0; }
+.photo-credits a { color: #315e56; }
+
+@media (max-width: 720px) {
+  .place-photo img { height: 170px; }
+}
