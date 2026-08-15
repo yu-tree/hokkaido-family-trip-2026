@@ -8,7 +8,7 @@
     teshikaga:'https://www.hokkaido-airports.com/ja/new-chitose/assets/pages/special/airport-noodle/img/ph_244_1.jpg',
     shimukappu:'https://www.michi-no-eki.jp/sites/default/files/styles/stations_main/public/stations/de1994f3eece33d468ba8dd39b42ad80.jpg',
     parfait:'https://svcstrg.cld.navitime.jp/imgfile/02301_1503673_01.jpg',
-    shikisaiMap:'https://www.shikisainooka.jp/wp-content/themes/shikisainooka/images/greenseason/map.jpg',
+    shikisaiMap:ASSET+'shikisai-course-map.png',
     norokko:'https://www.shikisainooka.jp/wp-content/themes/shikisainooka/images/greenseason/norimonoPh01.jpg',
     croquette:'https://www.shikisainooka.jp/wp-content/themes/shikisainooka/images/about/aboutRestaurant02.jpg',
     softcream:'https://www.shikisainooka.jp/wp-content/themes/shikisainooka/images/about/aboutRestaurant03.jpg',
