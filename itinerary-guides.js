@@ -36,21 +36,22 @@
   function airportGuide(){
     const links=`<div class="airport-map-links">${source('https://www.hokkaido-airports.com/ko/new-chitose/floormap/international/?floor=2F','국제선 2층 공식 지도')}${source('https://www.hokkaido-airports.com/ko/new-chitose/floormap/domestic/?floor=3F','국내선 3층 공식 지도')}${source('https://www.hokkaido-airports.com/en/new-chitose/access/rentacar/','렌터카 카운터 공식 안내')}</div>`;
     return frame('airport','입국장 → 라멘 → 닛폰렌터카 길찾기',`
-      <div class="guide-callout"><b>13:30 렌터카 대여 시작 기준</b><strong>11:00 착륙 → 12:00 전후 입국장 → 12:10 라멘도장 → 12:35 식사 종료 → 12:45 렌터카 카운터 → 12:55 송영 → 13:10 영업소 → 13:30 차량 출발</strong><p>예약서의 13:30은 차량 대여 시작 시각이에요. 12:45까지 국내선 1층 카운터에 도착해야 송영과 계약 절차를 거쳐 제시간에 출발할 수 있습니다.</p></div>
+      <div class="guide-callout"><b>기본안 · 부모님 식사 40분 확보</b><strong>11:00 착륙 → 12:00 전후 입국장 → 12:10 라멘도장 → 12:50 식사 종료 → 13:00 렌터카 카운터 → 13:10 전후 송영 → 13:25 영업소 → 13:30 인수 절차</strong><p>송영이 바로 연결되면 13:40 전후 실제 운전 출발을 예상해요. 예약 시각보다 약간 늦어질 가능성은 있으므로 카운터에서 먼저 예약번호를 확인합니다.</p></div>
+      <div class="option-plans airport-delay-plans"><article><span>입국장을 12:15 이전에 나왔을 때</span><h3>기본안 그대로 진행</h3><p>라멘과 이동에 50분을 쓰고 13:00까지 렌터카 카운터에 도착해요. 부모님 식사는 40분 확보합니다.</p><b>13:30 인수 절차 · 13:40 전후 출발</b></article><article><span>입국장을 12:20 이후에 나왔을 때</span><h3>식사 전에 렌터카 지연 연락</h3><p>050-1712-2970으로 전화해 항공편·입국수속 지연과 예상 카운터 도착 시각을 알린 뒤, 식사를 35~40분 하고 이동해요.</p><b>연락 없이 1시간 이상 늦지 않기</b></article></div>
       <h3>공항 안에서 따라갈 표지판</h3>
       <div class="airport-wayfinding">
         <article><b>1</b><small>국제선 2F</small><h4>입국수속·수하물·세관</h4><p>도착 로비로 나오면 <strong>国内線 / Domestic Terminal</strong> 표지판을 찾고 국내선 연결 방향으로 이동해요.</p><span>찾을 글자: 国内線 · 連絡施設</span></article>
         <i>→</i>
         <article><b>2</b><small>연결 통로</small><h4>국내선 터미널로 이동</h4><p>무빙워크가 있는 연결시설을 통과해 국내선 건물로 가요. 부모님과 짐이 있으니 엘리베이터를 우선 이용합니다.</p><span>예상 도보 10분 안팎</span></article>
         <i>→</i>
-        <article><b>3</b><small>국내선 3F</small><h4>北海道ラーメン道場</h4><p>국내선 건물에서 <strong>3F Restaurants</strong> 표지판을 따라 올라가 ‘홋카이도 라멘도장’ 입구를 찾아요.</p><span>12:35 식사 종료 목표</span></article>
+        <article><b>3</b><small>국내선 3F</small><h4>北海道ラーメン道場</h4><p>국내선 건물에서 <strong>3F Restaurants</strong> 표지판을 따라 올라가 ‘홋카이도 라멘도장’ 입구를 찾아요.</p><span>12:10~12:50 식사 목표</span></article>
         <i>→</i>
         <article><b>4</b><small>국내선 1F</small><h4>도착구 3번 부근 렌터카</h4><p>식사 후 1층으로 내려가 <strong>到着口3 / Arrival Gate 3</strong>와 <strong>レンタカー / Car Rental</strong> 표지판을 따라가요.</p><span>닛폰렌터카 카운터 찾기</span></article>
         <i>→</i>
         <article><b>5</b><small>무료 송영</small><h4>카운터 접수 후 영업소 이동</h4><p>카운터에서 접수하면 버스로 신치토세공항 영업소까지 이동해요. 편도 약 10~15분이며 공항 터미널에서는 차량을 받을 수 없어요.</p><span>카운터가 비면 비치된 직통전화 사용</span></article>
       </div>${links}
       <h3>국내선 3층 홋카이도 라멘도장 추천 3곳</h3><div class="guide-cards food-cards"><article>${photo(IMG.keyaki,'게야키 미소라멘','사진: Tabelog · 신치토세공항점')}<h4>1순위 · 게야키</h4><p>3종 된장을 섞은 깊은 국물과 중간 굵기 꼬불면의 정통 삿포로 미소라멘이에요.</p><b>味噌ラーメン · ¥870</b></article><article>${photo(IMG.ajisai,'아지사이 시오라멘','사진: Tabelog · 신치토세공항점')}<h4>2순위 · 아지사이</h4><p>맑고 가벼운 하코다테식 소금 국물. 부모님이 진한 된장 국물이 부담스러울 때 좋아요.</p><b>味彩塩拉麺 · ¥950</b></article><article>${photo(IMG.ichigen,'에비소바 이치겐의 새우 소금 라멘','공항 공식 사진')}<h4>3순위 · 에비소바 이치겐</h4><p>새우 향을 진하게 느끼고 싶을 때 선택해요. 대기가 길면 1·2순위로 바로 바꿉니다.</p><b>そのまま えびしお · ¥950</b></article></div>
-      <div class="guide-note"><b>점심 시간 기준</b><p>12:10 전후 도착을 목표로 하고, 게야키 대기가 10분 이상이면 아지사이 또는 이치겐으로 바로 바꿔 12:35에는 식사를 끝내요. 입국장을 12:15 이후에 나오면 대기 없는 식당이나 간단한 식사로 전환하고, 12:45 카운터 도착을 우선합니다.</p></div>
+      <div class="guide-note"><b>점심 시간 기준</b><p>정상 도착이면 12:10~12:50을 식사 시간으로 확보해요. 게야키 대기가 10분 이상이면 아지사이 또는 이치겐으로 바꾸되 식사 자체를 서두르지는 않습니다. 입국수속이 1시간 더 걸리면 닛폰렌터카에 먼저 전화하고, 안내받은 인수 가능 시각에 맞춰 이후 비에이 일정을 조정합니다.</p></div>
       <h3>닛폰렌터카 카운터에서 할 일</h3><div class="guide-steps"><span><b>1</b>예약번호 T06394와 예약자 ‘チョンスンジェ’ 확인</span><span><b>2</b>여권·한국 운전면허증·국제운전면허증·결제카드 제시</span><span><b>3</b>관리자 페이지 ‘예약 정보’에서 원문 예약확인서 열기</span><span><b>4</b>카운터가 비어 있으면 직통전화, 문의 전화는 050-1712-2970</span><span><b>5</b>송영버스 승차 → 영업소에서 계약·차량 확인 → 출발</span></div>
     `,source('https://store.nipponrentacar.co.jp/b/nrs/info/810034','닛폰렌터카 신치토세공항점 공식 안내'))
   }
