@@ -1,0 +1,86 @@
+.airport-wayfinding {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  gap: 7px;
+  align-items: stretch;
+}
+
+.airport-wayfinding article {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fafbf9;
+}
+
+.airport-wayfinding article > b {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-size: 12px;
+}
+
+.airport-wayfinding article small {
+  display: block;
+  margin-top: 10px;
+  color: var(--green);
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.airport-wayfinding article h4 {
+  margin: 4px 0 7px;
+  font-size: 13px;
+}
+
+.airport-wayfinding article p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.airport-wayfinding article span {
+  display: block;
+  margin-top: 9px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.airport-wayfinding > i {
+  align-self: center;
+  color: #7fa197;
+  font-style: normal;
+  font-size: 20px;
+  text-align: center;
+}
+
+.airport-map-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.airport-map-links .guide-source {
+  padding: 8px 10px;
+  border-radius: 9px;
+  background: #edf7f3;
+  font-size: 10px;
+}
+
+@media (max-width: 980px) {
+  .airport-wayfinding {
+    grid-template-columns: 1fr;
+  }
+
+  .airport-wayfinding > i {
+    transform: rotate(90deg);
+  }
+}
