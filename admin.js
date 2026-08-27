@@ -1,6 +1,6 @@
 const SB_URL='https://lshtmesomujktcqnyzmn.supabase.co',KEY='sb_publishable_7jNPPZwZkEIpxm4QWI8qLw_tpGABo5v',SLUG='hokkaido-family-trip-2026';
 const db=supabase.createClient(SB_URL,KEY),root=document.querySelector('#admin');
-let DATA,tab='schedule',dayId,message='';
+let DATA,tab='schedule',dayId,message='',railTaskPromise;
 const esc=(v='')=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 db.auth.onAuthStateChange(()=>boot());
@@ -8,6 +8,7 @@ async function boot(){
   const{data:{session}}=await db.auth.getSession();if(!session)return login();
   const{data:allowed}=await db.from('admin_allowlist').select('email').maybeSingle();if(!allowed)return denied(session.user.email);
   const{data:trip}=await db.from('trips').select('id,title').eq('slug',SLUG).single();
+  await ensureRailSeatTask(trip.id);
   const [ds,ps,is,rs,fs,ns,es,ts,pos,pps,rps]=await Promise.all([
     db.from('trip_days').select('*').eq('trip_id',trip.id).order('day_number'),db.from('places').select('*').eq('trip_id',trip.id),
     db.from('itinerary_items').select('*').order('sort_order'),db.from('reservations').select('*').eq('trip_id',trip.id),db.from('flights').select('*').eq('trip_id',trip.id).order('sort_order'),
@@ -15,6 +16,16 @@ async function boot(){
     db.from('trip_tasks').select('*').eq('trip_id',trip.id).order('sort_order'),db.from('place_options').select('*').order('sort_order'),db.from('place_private').select('*'),db.from('reservation_private').select('*')]);
   const days=ds.data||[],ids=new Set(days.map(x=>x.id));DATA={session,trip,days,places:ps.data||[],items:(is.data||[]).filter(x=>ids.has(x.day_id)),reservations:rs.data||[],reservationPrivate:rps.data||[],flights:fs.data||[],notes:ns.data||[],expenses:es.data||[],tasks:ts.data||[],placeOptions:pos.data||[],placePrivate:pps.data||[]};
   dayId=dayId&&ids.has(dayId)?dayId:days[0]?.id;render();
+}
+async function ensureRailSeatTask(tripId){
+  if(railTaskPromise)return railTaskPromise;
+  railTaskPromise=(async()=>{
+  const title='8월 29일 삿포로→오타루 U-seat 4명 예약';
+  const{data:existing}=await db.from('trip_tasks').select('id').eq('trip_id',tripId).eq('title',title).limit(1);
+  if(existing?.length)return;
+  await db.from('trip_tasks').insert({trip_id:tripId,task_type:'reservation',title,details:'8월 29일 09:41 전후 삿포로역 출발 쾌속 Airport 오타루행을 검색해 4호차 U-seat 지정석 4명을 확인·예약해요. 승차운임은 Kitaca로 별도 지불하며, 지정석 전자 티켓만으로는 개찰구를 통과할 수 없어요.',fallback_plan:'원하는 열차의 U-seat가 매진이면 자유석 1~3·5~6호차를 이용해요. 09:20까지 삿포로역 승강장에 도착해 줄을 서고, 행선지가 小樽인지 확인합니다.',action_url:'https://www.eki-net.com/ko/jreast-train-reservation/Top/Index',due_date:'2026-08-28',priority:'important',sort_order:35});
+  })();
+  return railTaskPromise;
 }
 function login(){root.className='login';root.innerHTML=`<section><a class="brand" href="index.html">HOKKAIDO 2026</a><h1>여행 관리자</h1><p>일정과 예약, 여행 메모와 비용을 안전하게 관리해요.</p><form id="login"><label>관리자 이메일<input name="email" type="email" value="amy9876@naver.com" required></label><button>이메일로 로그인 링크 받기</button></form><div id="msg"></div><small>등록된 관리자 이메일만 수정할 수 있습니다.</small></section>`;document.querySelector('#login').onsubmit=async e=>{e.preventDefault();const email=new FormData(e.target).get('email'),m=document.querySelector('#msg');m.className='message';m.textContent='로그인 링크를 보내고 있어요…';const{error}=await db.auth.signInWithOtp({email,options:{emailRedirectTo:location.href.split('#')[0]}});m.textContent=error?'전송하지 못했어요: '+error.message:'이메일로 보낸 로그인 링크를 눌러주세요.'}}
 function denied(email){root.className='login';root.innerHTML=`<section><h1>접근 권한이 없습니다</h1><p>${esc(email)}은 관리자로 등록되지 않았어요.</p><button id="out">다른 계정으로 로그인</button></section>`;document.querySelector('#out').onclick=()=>db.auth.signOut()}
